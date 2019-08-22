@@ -31,6 +31,10 @@ public class TeamService {
 	}
 	
 	public Set<Team> getAllTeams() {
+		/*
+		 * try { Thread.sleep(10000); } catch (InterruptedException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
 		return teams;
 	}
 	
