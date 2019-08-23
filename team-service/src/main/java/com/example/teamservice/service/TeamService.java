@@ -1,5 +1,6 @@
 package com.example.teamservice.service;
 
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -50,5 +51,15 @@ public class TeamService {
 		return teams.stream()
 				.filter(t -> t.getCountry().equals(country))
 				.collect(Collectors.toSet());
+	}
+	
+	public Team createTeam(Team team) {
+		Integer id = teams.stream()
+						.max(Comparator.comparing(Team::getId))
+						.get().getId() + 1;
+		team.setId(id);
+		teams.add(team);
+		
+		return team;
 	}
 }

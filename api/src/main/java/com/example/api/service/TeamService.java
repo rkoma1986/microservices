@@ -65,4 +65,22 @@ public class TeamService {
 	public Team fallbackGetById(Integer id) {
 		return new Team(0, "No Team", "");
 	}
+	
+	@HystrixCommand(fallbackMethod = "fallbackSaveNewTeam",
+			commandProperties = {
+					@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000"),
+					@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
+					@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50"),
+			        @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "100000")
+			}
+	)
+	public Team saveNewTeam(Team team) {
+		Team savedTeam = restTemplate.postForObject(teamServicePath + "/api/teams/create", team, Team.class);
+		
+		return savedTeam;
+	}
+	
+	public Team fallbackSaveNewTeam(Team team) {
+		return new Team(0, "Error on saving", null);
+	}
 }

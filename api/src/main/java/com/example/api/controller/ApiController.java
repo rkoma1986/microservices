@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,5 +50,12 @@ public class ApiController {
 		Player player = teamPlayerService.getPlayerById(id);
 		
 		return new ResponseEntity<Player>(player, HttpStatus.OK);
+	}
+	
+	@PostMapping("team/create")
+	public ResponseEntity<Team> createTeam(@RequestBody Team team) {
+		Team savedTeam = teamService.saveNewTeam(team);
+		
+		return new ResponseEntity<Team>(savedTeam, HttpStatus.OK);
 	}
 }
