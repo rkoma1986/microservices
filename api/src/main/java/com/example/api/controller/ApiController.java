@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.api.exception.EntityNotFoundException;
 import com.example.api.model.Player;
 import com.example.api.model.Team;
 import com.example.api.service.PlayerService;
@@ -39,7 +40,7 @@ public class ApiController {
 	}
 	
 	@GetMapping("team/{id}")
-	public ResponseEntity<Team> getTeamById(@PathVariable("id") Integer id) {
+	public ResponseEntity<Team> getTeamById(@PathVariable("id") Integer id) throws EntityNotFoundException {
 		Team team = teamPlayerService.getTeamById(id);
 		
 		return new ResponseEntity<Team>(team, HttpStatus.OK);

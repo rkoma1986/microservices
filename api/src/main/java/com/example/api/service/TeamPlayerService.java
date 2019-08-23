@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.api.exception.EntityNotFoundException;
 import com.example.api.model.Player;
 import com.example.api.model.Team;
 
@@ -33,10 +34,13 @@ public class TeamPlayerService {
 		return teams;
 	}
 	
-	public Team getTeamById(Integer id) {
+	public Team getTeamById(Integer id) throws EntityNotFoundException {
 		Team team = teamService.getById(id);
+		if (team == null) {
+			throw new EntityNotFoundException(Team.class, "id", id.toString());
+		}
 		team.setPlayers(playerService.getByTeamId(id));
-		
+
 		return team;
 	}
 	

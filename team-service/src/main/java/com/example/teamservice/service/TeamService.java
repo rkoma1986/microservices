@@ -2,6 +2,7 @@ package com.example.teamservice.service;
 
 import java.util.Comparator;
 import java.util.LinkedHashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -41,10 +42,18 @@ public class TeamService {
 	
 	public Team getTeamById(int id) {
 		
-		return teams.stream()
-				.filter(t -> t.getId() == id)
-				.findFirst()
-				.get();	
+		Team team;
+		
+		try {
+			team = teams.stream()
+					.filter(t -> t.getId() == id)
+					.findFirst()
+					.get();
+		} catch (NoSuchElementException ex) {
+			team = null;
+		}
+		
+		return team;
 	}
 	
 	public Set<Team> getTeamsByCountry(String country) {
