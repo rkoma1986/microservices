@@ -92,4 +92,10 @@ public class PlayerService {
 	public Player fallbackGetById(Integer id) {
 		return new Player(0, "No player", null, 0);
 	}
+	
+	public Player createPlayer(Player player) {
+		player = restTemplate.postForObject(playerServicePath + "/api/players/create", player, Player.class);
+		
+		return player;
+	}
 }

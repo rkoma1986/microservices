@@ -1,5 +1,6 @@
 package com.example.playerservice.service;
 
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -61,5 +62,15 @@ public class PlayerService {
 				.filter(p -> p.getId() == id)
 				.findFirst()
 				.get();
+	}
+	
+	public Player createPlayer(Player player) {
+		Integer id = players.stream()
+						.max(Comparator.comparing(Player::getId))
+						.get().getId() + 1;
+		player.setId(id);
+		players.add(player);
+		
+		return player;
 	}
 }

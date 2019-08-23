@@ -50,4 +50,14 @@ public class TeamPlayerService {
 		
 		return player;
 	}
+	
+	public Player createPlayer(Player player) throws EntityNotFoundException {
+		if (player.getTeamId() != null && player.getTeamId() != 0) {
+			Team team = teamService.getById(player.getTeamId());
+			if (team == null) {
+				throw new EntityNotFoundException(Team.class, "id", player.getTeamId().toString());
+			}
+		}
+		return playerService.createPlayer(player);
+	}
 }

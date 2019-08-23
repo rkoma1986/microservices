@@ -55,8 +55,15 @@ public class ApiController {
 	
 	@PostMapping("team/create")
 	public ResponseEntity<Team> createTeam(@RequestBody Team team) {
-		Team savedTeam = teamService.saveNewTeam(team);
+		team = teamService.saveNewTeam(team);
 		
-		return new ResponseEntity<Team>(savedTeam, HttpStatus.OK);
+		return new ResponseEntity<Team>(team, HttpStatus.OK);
+	}
+	
+	@PostMapping("player/create")
+	public ResponseEntity<Player> createPlayer(@RequestBody Player player) throws EntityNotFoundException {
+		player = teamPlayerService.createPlayer(player);
+		
+		return new ResponseEntity<Player>(player, HttpStatus.OK);
 	}
 }

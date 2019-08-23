@@ -75,9 +75,9 @@ public class TeamService {
 			}
 	)
 	public Team saveNewTeam(Team team) {
-		Team savedTeam = restTemplate.postForObject(teamServicePath + "/api/teams/create", team, Team.class);
+		team = restTemplate.postForObject(teamServicePath + "/api/teams/create", team, Team.class);
 		
-		return savedTeam;
+		return team;
 	}
 	
 	public Team fallbackSaveNewTeam(Team team) {

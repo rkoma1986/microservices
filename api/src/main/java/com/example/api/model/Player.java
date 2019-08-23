@@ -7,7 +7,7 @@ public class Player {
 	private String lastName;
 	private Integer shirtNumber;
 	private Team team;
-	private int teamId;
+	private Integer teamId;
 	
 	public Player() {
 		super();
@@ -20,41 +20,52 @@ public class Player {
 		this.lastName = lastName;
 		this.shirtNumber = shirtNumber;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public Integer getShirtNumber() {
 		return shirtNumber;
 	}
-	public void setShirtNumber(int shirtNumber) {
+
+	public void setShirtNumber(Integer shirtNumber) {
 		this.shirtNumber = shirtNumber;
 	}
+
 	public Team getTeam() {
 		return team;
 	}
+
 	public void setTeam(Team team) {
 		this.team = team;
 	}
-	public int getTeamId() {
+
+	public Integer getTeamId() {
 		return teamId;
 	}
-	public void setTeamId(int teamId) {
+
+	public void setTeamId(Integer teamId) {
 		this.teamId = teamId;
 	}
 	
